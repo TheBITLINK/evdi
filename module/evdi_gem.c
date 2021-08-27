@@ -258,7 +258,7 @@ int evdi_gem_vmap(struct evdi_gem_object *obj)
 
 void evdi_gem_vunmap(struct evdi_gem_object *obj)
 {
-	if (obj->base.import_attach) {
+	if (obj->base.import_attach && !evdi_vmap_texture) {
 #if KERNEL_VERSION(5, 11, 0) <= LINUX_VERSION_CODE
 		struct dma_buf_map map = DMA_BUF_MAP_INIT_VADDR(obj->vmapping);
 
