@@ -230,7 +230,7 @@ int evdi_gem_vmap(struct evdi_gem_object *obj)
 	int page_count = obj->base.size / PAGE_SIZE;
 	int ret;
 
-	if (obj->base.import_attach) {
+	if (obj->base.import_attach && !evdi_vmap_texture) {
 #if KERNEL_VERSION(5, 11, 0) <= LINUX_VERSION_CODE
 		struct dma_buf_map map;
 
